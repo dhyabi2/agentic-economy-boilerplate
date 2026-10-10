@@ -104,6 +104,28 @@ services:
       - ./mastercard-vending-machine:/app
       - /app/node_modules
 
+  # Nano (XNO) Vending Machine
+  nano-vending:
+    build:
+      context: ./nano-vending-machine
+      dockerfile: Dockerfile
+    container_name: nano-vending
+    ports:
+      - "3007:3007"
+    environment:
+      - NODE_ENV=production
+      - PORT=3007
+      - USE_REDIS=true
+      - REDIS_URL=redis://redis:6379
+      - PAY_TO=${PAY_TO:-nano_1111111111111111111111111111111111111111111111111117353trpda}
+    depends_on:
+      redis:
+        condition: service_healthy
+    restart: unless-stopped
+    volumes:
+      - ./nano-vending-machine:/app
+      - /app/node_modules
+
 volumes:
   redis-data:
     driver: local

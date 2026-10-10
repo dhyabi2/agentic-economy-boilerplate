@@ -26,6 +26,7 @@ cd x402-vending-machine && npm install && npm start          # Crypto micropayme
 cd ap2-vending-machine && npm install && npm start           # Enterprise authorization ✅
 cd acp-vending-machine && npm install && npm start           # Consumer checkout ✅
 cd mastercard-vending-machine && npm install && npm start    # TradFi integration ✅
+cd nano-vending-machine && npm install && npm start          # Nano x402, real on-chain verification ✅
 
 # Your vending machine is now live! 🎉
 ```
@@ -137,6 +138,27 @@ npm install && npm start
 
 [Full Documentation](./mastercard-vending-machine/README.md)
 
+### ✅ Nano Vending Machine
+**Protocol**: Nano (XNO) x402 — exact-scheme, on-ledger settlement
+**Best For**: zero-fee micropayments, AI agent APIs, feeless pay-per-call
+**Features**: HTTP 402, **real on-chain verification** over a public RPC, ~1s finality, zero fees, no gas, no issuer
+**Status**: ✅ Working (with shared utilities + tests)
+
+```bash
+cd nano-vending-machine
+npm install && npm start
+curl http://localhost:3007/inventory
+curl http://localhost:3007/buy/classic-cola
+# Returns: 402 Payment Required with an exact XNO offer (x402-accept: nano:mainnet)
+```
+
+Unlike the x402 example's simulated verification, this machine reads the
+buyer's confirmed Nano send block from the network before dispensing — a
+keyless, client-flag-free settlement check. See `nano-vending-machine/` for
+details and the 13 tests (runs in CI, network-free).
+
+[Full Documentation](./nano-vending-machine/README.md)
+
 ### 🚧 Coming Soon
 
 #### Pay3 Vending Machine
@@ -164,6 +186,7 @@ agentic-economy-boilerplate/
 │   ├── testing/                       #   Mock agents, fixtures, test helpers
 │   └── docker/                        #   Dockerfile templates
 ├── x402-vending-machine/              # ✅ HTTP 402 crypto payments
+├── nano-vending-machine/              # ✅ Nano x402, real on-chain verification
 ├── ap2-vending-machine/               # ✅ Google AP2 enterprise
 ├── acp-vending-machine/               # ✅ OpenAI + Stripe consumer
 ├── mastercard-vending-machine/        # ✅ Mastercard TradFi
