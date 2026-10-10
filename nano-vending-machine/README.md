@@ -62,14 +62,14 @@ The machine never trusts a client flag or a simulated result. `POST
 Any failure (missing block, unconfirmed, wrong amount, wrong address, RPC
 unreachable) returns **402** — it never passes.
 
-## Tests (run in CI, network-free)
+## Tests (network-free)
 
 ```bash
 cd nano-vending-machine
 npm test
 ```
 
-15 tests cover exact raw-amount conversion (no float error above 2^53), the
+13 tests cover exact raw-amount conversion (no float error above 2^53), the
 verifier's four fail-closed cases, and the full HTTP flow (402 offer →
 confirm → dispense, and rejection of unverified/already-processed payments)
 against a mocked RPC — no real Nano spent.

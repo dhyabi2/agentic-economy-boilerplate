@@ -3,7 +3,7 @@
  *
  * These exercise the express routes and the on-chain verifier with a mocked
  * public RPC (no real Nano spent, no network needed) so the whole flow runs
- * in CI on a plain `npm test`.
+ * offline on a plain `npm test`.
  */
 
 const request = require('supertest');

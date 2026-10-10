@@ -155,7 +155,7 @@ curl http://localhost:3007/buy/classic-cola
 Unlike the x402 example's simulated verification, this machine reads the
 buyer's confirmed Nano send block from the network before dispensing — a
 keyless, client-flag-free settlement check. See `nano-vending-machine/` for
-details and the 13 tests (runs in CI, network-free).
+details and the 13 network-free tests (run them with `npm run test:nano`, or `npm test` for every machine).
 
 [Full Documentation](./nano-vending-machine/README.md)
 
